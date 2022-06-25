@@ -1,3 +1,9 @@
+<h2>Big O analysis of time complexity using python</h2> 
+<p align="center"><img src="BigO Analysis/fizzBigO.png" alt="Time complexity analysis of algorithm found to be O(n)!"></p>
+<p> it can be clearly seen that the time complexity of the algorithm created is linear: O(n) </p> <br/>
+<hr/>
+
+
 <h2><a href="https://leetcode.com/problems/fizz-buzz/">412. Fizz Buzz</a></h2><h3>Easy</h3><hr><div><p>Given an integer <code>n</code>, return <em>a string array </em><code>answer</code><em> (<strong>1-indexed</strong>) where</em>:</p>
 
 <ul>
