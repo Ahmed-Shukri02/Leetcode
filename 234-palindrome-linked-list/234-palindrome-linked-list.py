@@ -9,21 +9,31 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        # complexities:
-        # Time: O(n)
-        # Space: O(n)
+        # try algorithm with time complexity of O(n) and space complexity of O(1):
         
-        data_list = []
-        length = 0
+        # use 2 pointer method to reach the midpoint of the linked list
+        pf, ps = head, head
         
-        current = head
-        while current: # = while current != None
-            data_list.append(current.val)
-            length += 1
-            current = current.next
+        while pf and pf.next: # while fast pointer is not pointing to none
+            pf = pf.next.next
+            ps = ps.next
         
-        # compare last and first value
-        for i in range(int(ceil(length/2))):
-            if(data_list[i] != data_list[-i-1]): return False
+        # reverse everything from the midpoint onwards
+        prev, current = None, ps
         
+        while current: #while current pointer is not pointing to none
+            nextTemp = current.next # temporarily store next node for access
+            current.next = prev
+            prev = current
+            current = nextTemp
+        
+        # loop ends when current = None and so previous is the last node. This can be used
+        
+        while prev:
+            if(prev.val != head.val): return False
+            else:
+                prev = prev.next
+                head = head.next
         return True
+        
+            
