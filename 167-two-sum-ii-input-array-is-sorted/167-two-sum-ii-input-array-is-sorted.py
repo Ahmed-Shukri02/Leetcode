@@ -6,21 +6,16 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        # Complexities: 
-        # Time: O(n)
-        # Space: O(1)
-        
-        # find length: O(n) time complexity
+        # use two pointer method
         length = len(numbers)
         
-        # set pointers to the beginning and end
-        p1, p2 = 0, length - 1
-        while p2 > p1:
-            val = numbers[p1] + numbers[p2]
-            if val > target:
-                p2 -= 1
-            elif val < target:
-                p1 += 1
-            else: return [p1 + 1, p2 + 1]
-        
-        return -1
+        l, r = 0, length - 1
+        while r > l:
+            sol = numbers[l] + numbers[r]
+            if sol > target:
+                r -= 1
+                continue
+            elif sol < target:
+                l += 1
+            else:
+                return [l + 1, r + 1]
