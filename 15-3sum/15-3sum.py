@@ -5,39 +5,29 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         
-        # Complexities:
-        # Time: O(n^2)
-        # Space: O(n)? maybe?
+        # sort nums
+        nums.sort()
         
-        # find length and sort: O(n) and O(nlogn)
         length = len(nums)
-        nums = sorted(nums)
-        
-        
-        # 3 pointer method: O(n^2)
+        # single pointer that goes through array
         final = []
-        for i in range(length):
-            
-            if i > 0 and nums[i] == nums[i-1]:
+        slow = 0
+        for slow in range(length):
+            if slow > 0 and nums[slow] == nums[slow-1]:
                 continue
             
-            target = - nums[i] # (0 - num) is b + c
-            p2, p3 = i + 1, length - 1 
-            
-            # do twosum for target
-            while p2 < p3:
-                val = nums[p2] + nums[p3]
-                if val < target:
-                    p2 += 1
-                elif val > target:
-                    p3 -= 1
+            target =  0 - nums[slow]
+            # target is target for twosum search from i+1 to length -1
+            l, r = slow+1, length - 1
+            while r > l:
+                sol = nums[r] + nums[l]
+                if sol > target:
+                    r -= 1
+                elif sol < target:
+                    l += 1
                 else:
-                    final.append([nums[i], nums[p2], nums[p3]])
-                    p2 += 1
-                    while nums[p2] == nums[p2-1] and p2 < p3:
-                        p2 += 1
-
-                
-            
+                    final.append([nums[slow], nums[r], nums[l]])
+                    l += 1
+                    while l < r and nums[l] == nums[l-1]:
+                        l += 1
         return final
-        
