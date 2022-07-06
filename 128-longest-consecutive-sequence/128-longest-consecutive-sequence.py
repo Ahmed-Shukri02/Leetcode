@@ -5,9 +5,7 @@ class Solution(object):
         :rtype: int
         """
         # O(n) time
-        hmap = {}
-        for val in nums:
-            hmap[val] = hmap.get(val, 0) + 1
+        hmap = set(nums)
         
         maxSeq = 0
         for val in nums:
