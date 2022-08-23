@@ -5,8 +5,7 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        length = len(nums)
-        l, r = 0, length - 1
+        l, r = 0, len(nums) - 1
         while l <= r:
             mid = (l + r)//2
             
