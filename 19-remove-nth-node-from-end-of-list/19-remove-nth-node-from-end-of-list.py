@@ -10,30 +10,14 @@ class Solution(object):
         :type n: int
         :rtype: ListNode
         """
-        # Complexities:
-        # Time: O(n)
-        # Space: O(1)
+        dummy = ListNode(0, head)
+        l, r = dummy, head
+        for i in range(n):
+            r = r.next
         
+        while r:
+            r = r.next
+            l = l.next
+        l.next = l.next.next
+        return dummy.next
         
-        # find full length of linked list
-        length = 0
-        currL = head
-        while currL:
-            length += 1
-            currL = currL.next
-        
-        # get to nth node
-        prev, curr = None, head
-        counter = 1
-        while counter <= (length - n):
-            prev = curr
-            curr = curr.next
-            counter += 1
-        
-        # set prev.next to curr.next. if 1 element list, set head to None
-        if prev:
-            prev.next = curr.next
-        else:
-            head = head.next
-        
-        return head
