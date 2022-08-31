@@ -13,25 +13,5 @@ class Solution(object):
         if not root:
             return 0
         
-        return self.maxDepthRecursive(root, 1)
-        
-        
-    def maxDepthRecursive(self, node, counter):
-        
-        counter += 1
-        if node.left:
-            leftMax = self.maxDepthRecursive(node.left, counter)
-        if node.right:
-            rightMax = self.maxDepthRecursive(node.right, counter)
-        counter -= 1
-        
-        if not node.left and not node.right: # at leaf
-            return counter
-        else:
-            if not node.left:
-                return rightMax
-            elif not node.right:
-                return leftMax
-            
-            return max(leftMax, rightMax)
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
             
