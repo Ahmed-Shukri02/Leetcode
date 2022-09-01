@@ -11,19 +11,23 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        counter = 0
+        stack = []
         
         
-        def kthSmallestRecursion(node, k, stack):
-            if not node:
-                return
+        # inorder traversal. add left to stack
+        
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+                continue
             
-            # for each tree, search all the way left. INORDER TRAVERSAL:
-            # LEFT, ROOT THEN RIGHT
-            kthSmallestRecursion(node.left, k, stack) # left
-            stack.append(node.val) # root
-            kthSmallestRecursion(node.right, k, stack) # right
+            root = stack.pop()
+            counter += 1
             
-            return stack
-                
-        stack = kthSmallestRecursion(root, k, [])
-        return stack[k - 1]
+            if counter == k:
+                return root.val
+            
+            root = root.right
+            
