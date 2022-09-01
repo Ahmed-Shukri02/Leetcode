@@ -10,18 +10,16 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        return self.isValid(root, float("-inf"), float("inf"))
-    
-    
-    def isValid(self, node, left, right):
-        if not node:
-            return True
+        def isValid(node, left, right):
+            if not node:
+                return True
         
-        # check if node val within range
-        if not left < node.val < right:
-            return False
+            # check if node val within range
+            if not left < node.val < right:
+                return False
+
+            return (isValid(node.left, left, node.val) and
+                    isValid(node.right, node.val, right))
         
-        return (self.isValid(node.left, left, node.val) and
-                self.isValid(node.right, node.val, right))
-        
+        return isValid(root, float("-inf"), float("inf"))
         
