@@ -12,29 +12,17 @@ class Solution(object):
         """
         
         curr1, curr2 = list1, list2
-        head = ListNode()
-        copyCurr = head
-        
-        # edge case: both lists are empty
-        if not list1 and not list2:
-            return None
-        
+        root = ListNode()
+        final = root
         while curr1 and curr2:
             if curr1.val <= curr2.val:
-                copyCurr.next = curr1
-                curr1 = curr1.next
-                copyCurr = copyCurr.next
-                continue
+                final.next = ListNode(curr1.val)
+                final, curr1 = final.next, curr1.next
             else:
-                copyCurr.next = curr2
-                curr2 = curr2.next
-                copyCurr = copyCurr.next
-                continue
-        
+                final.next = ListNode(curr2.val)
+                final, curr2 = final.next, curr2.next
         if curr1:
-            copyCurr.next = curr1
-        else:
-            copyCurr.next = curr2
-        return head.next
-            
-            
+            final.next = curr1
+        if curr2:
+            final.next = curr2
+        return root.next
