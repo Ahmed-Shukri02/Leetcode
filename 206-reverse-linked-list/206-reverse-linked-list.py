@@ -9,19 +9,11 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        #edge case
-        if not head:
-            return head
         
         prev, curr = None, head
-        while curr and curr.next:
-            # cache next
-            nextNode = curr.next
+        while curr:
+            tmp = curr.next
             curr.next = prev
             prev = curr
-            curr = nextNode
-        # do one more time for new head
-        
-        curr.next = prev
-        return curr
-        
+            curr = tmp
+        return prev
