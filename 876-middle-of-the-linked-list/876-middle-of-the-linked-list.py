@@ -10,16 +10,8 @@ class Solution(object):
         :rtype: ListNode
         """
         
-        # complexitites:
-        # Time: O(n)
-        # Space: O(1)
-        
-        
-        # use fast pointer and slow pointer
-        fast, slow = head, head
-        
-        while fast and fast.next:
-            fast = fast.next.next
-            slow = slow.next
-        
-        return slow
+        f, s = head, head
+        while f and f.next:
+            f = f.next.next
+            s = s.next
+        return s
