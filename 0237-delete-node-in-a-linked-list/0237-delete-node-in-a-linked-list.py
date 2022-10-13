@@ -11,20 +11,4 @@ class Solution(object):
         :rtype: void Do not return anything, modify node in-place instead.
         """
         
-        if not node:
-            return None
-        
-        tmp, prev = node, None
-        hmap = {}
-        while tmp and tmp.next:
-            tmp.val = tmp.next.val
-            
-            hmap[tmp] = prev
-            
-            prev = tmp
-            tmp = tmp.next
-        
-        if tmp:
-            prev.next = None
-        else:
-            hmap[prev].next = None
+        node.val, node.next = node.next.val, node.next.next
