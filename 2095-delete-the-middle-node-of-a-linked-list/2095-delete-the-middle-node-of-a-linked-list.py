@@ -13,21 +13,18 @@ class Solution(object):
         # Time: O(n)
         # Space: O(1)
         
-        # first get to the middle of the linked list
-        prev, curr = None, head
-        # make a fast pointer to go to the end
-        fast = head
-        while fast and fast.next:
-            fast = fast.next.next
-            prev = curr
-            curr = curr.next
-            
-        # now curr is the middle node, curr.next is the next node and prev is the previous node
-        # set prev.next to curr.next
-        if prev:
-            prev.next = curr.next
-        else: # will only happen if there is a one-element linked list
-            head = None
-            
+        if not head:
+            return head
+        
+        f, s = head, head
+        prev = None
+        while f and f.next:
+            f = f.next.next
+            prev = s
+            s = s.next
+        
+        if not prev:
+            return None
+        
+        prev.next = s.next
         return head
-            
