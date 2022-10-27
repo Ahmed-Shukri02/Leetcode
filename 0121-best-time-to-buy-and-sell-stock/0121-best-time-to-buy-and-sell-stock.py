@@ -1,21 +1,15 @@
-class Solution(object):
-    def maxProfit(self, prices):
-        """
-        :type prices: List[int]
-        :rtype: int
-        """
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
         
-        # two pointer
-        length = len(prices)
+        maxC = 0
         l, r = 0, 1
-        maxProfit = 0
-        while l < r and r < length:
-            if prices[l] < prices[r]:
-                profit = prices[r] - prices[l]
-                if profit > maxProfit:
-                    maxProfit = profit
-                r += 1
-            else:
+        
+        while r < len(prices) and l < r:
+            if prices[r] < prices[l]:
                 l = r
+                r = r + 1
+                continue
+            else:
+                maxC = max(maxC, prices[r] - prices[l])
                 r += 1
-        return maxProfit
+        return maxC
