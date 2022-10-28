@@ -5,15 +5,23 @@ class Solution:
         length = len(nums)
         nums = sorted(nums)
         
-        tr = set()
+        tr = []
         for i in range(length):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            
             remainder = 0 - nums[i]
             # do 2sum with remainder
-            hset = set()
-            for j in range(i + 1, length):
-                if (remainder - nums[j]) in hset:
-                    ans = (nums[i], nums[j], remainder - nums[j])
-                    if ans not in tr: tr.add(ans)
-                hset.add(nums[j])
-            
-        return list(tr)
+            l, r = i + 1, length - 1
+            while l < r:
+                numsum = nums[l] + nums[r]
+                if numsum > remainder:
+                    r -= 1
+                elif numsum < remainder:
+                    l += 1
+                else:
+                    tr.append([nums[r], nums[l], nums[i]])
+                    l += 1
+                    while l < r and nums[l] == nums[l - 1]:
+                        l += 1
+        return tr
