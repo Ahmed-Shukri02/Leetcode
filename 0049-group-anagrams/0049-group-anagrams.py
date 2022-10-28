@@ -4,15 +4,12 @@ class Solution:
         length = len(strs)
         hmap = {}
         for s in strs:
-            set1 = [0 for i in range(26)]
-            for char in s:
-                set1[ord(char) - 97] = set1[ord(char) - 97] + 1
+            set1 = "".join(sorted(s))
             
-            t = tuple(set1)
-            if t in hmap:
-                hmap[t].append(s)
+            if set1 in hmap:
+                hmap[set1].append(s)
             else:
-                hmap[t] = [s]
+                hmap[set1] = [s]
         
         return list(hmap.values())
         
