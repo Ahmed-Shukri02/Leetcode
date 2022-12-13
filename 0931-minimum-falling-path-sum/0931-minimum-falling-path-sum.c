@@ -24,6 +24,7 @@ int minFallingPathSum(int** matrix, int matrixSize, int* matrixColSize){
         final = ans < final ? ans : final;
     }
     
+    free(mem);
     return final;
 }
 
